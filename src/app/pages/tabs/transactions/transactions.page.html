@@ -1,0 +1,44 @@
+<ion-header class="ion-no-border" translucent="true">
+  <ion-toolbar>
+    <ion-title color="tertiary" mode="ios">Transactions</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment mode="ios" [value]="segmentValue" (isChange)="segmentChanged($event)">
+      <ion-segment-button value="in">
+        <ion-label>In-flow</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="out">
+        <ion-label>Out-flow</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="secondary">
+  @if(transactions.length > 0){
+    <ion-list class="transactions">
+        <ion-item-group>
+          @for(transaction of transactions; track $index) {
+          <ion-item lines="full">
+            <ion-thumbnail slot="start" class="ion-text-center">
+              <img [src]="'assets/imgs/' + (transaction?.amount >= 0 ? 'upright.png' : 'downleft.png')">
+            </ion-thumbnail>
+            <ion-label>
+              <ion-text color="primary"> {{transaction?.to}} </ion-text>
+              <p>
+                <ion-text>
+                  {{transaction?.date | date: 'MMM d, y'}}
+                </ion-text>
+              </p>
+            </ion-label>
+            <ion-text slot="end" color="primary">
+              {{transaction?.account >= 0 ? 'R' + transaction.amount : '-R' + (transaction?.amount * (-1))}}
+            </ion-text>
+          </ion-item>
+        }
+        </ion-item-group>
+      
+    </ion-list>
+  }
+
+</ion-content>
