@@ -89,7 +89,7 @@
               </p>
             </ion-label>
             <ion-text slot="end" color="primary">
-              {{transaction?.account >= 0 ? 'R' + transaction.amount : '-R' + (transaction?.amount * (-1))}}
+              {{transaction?.amount >= 0 ? 'R' + transaction.amount : '-R' + (transaction?.amount * (-1))}}
             </ion-text>
           </ion-item>
         </ion-item-group>
